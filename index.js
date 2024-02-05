@@ -5,7 +5,9 @@ import express from "express";
 import cors from "cors";
 
 const PORT = process.env.PORT;
-const { products } = JSON.parse(await fs.readFile("db.json", "utf8"));
+const { products, categories, brands } = JSON.parse(
+  await fs.readFile("db.json", "utf8"),
+);
 
 const start = async () => {
   const app = express();
@@ -20,6 +22,14 @@ const start = async () => {
 
   app.use("/products", (req, res) => {
     return res.json(products);
+  });
+
+  app.use("/categories", (req, res) => {
+    return res.json(categories);
+  });
+
+  app.use("/brands", (req, res) => {
+    return res.json(brands);
   });
 
   app.use("/", (req, res) => {
