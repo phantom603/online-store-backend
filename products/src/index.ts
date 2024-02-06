@@ -10,7 +10,7 @@ const start = async () => {
   }
 
   process.on("unhandledRejection", (error) => {
-    console.error("unhandledRejection", error);
+    console.info("unhandledRejection", error);
   });
 
   app.listen(PORT, () => {

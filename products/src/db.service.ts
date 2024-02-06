@@ -45,7 +45,6 @@ class DB {
 
       return this.#connection;
     } catch (error: any) {
-      // console.log(`Cannot get access to db: ${error.message}`);
       throw new Error(`Cannot get access to db: ${error.message}`);
     }
   }

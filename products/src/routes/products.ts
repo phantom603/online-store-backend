@@ -5,9 +5,6 @@ const router = express.Router();
 
 router.get("/products", async (req: Request, res: Response) => {
   const connection = await db.connect();
-
-  console.log("connection", connection);
-
   const products = connection.get("products");
 
   res.send(products);
