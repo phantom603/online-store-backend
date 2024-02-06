@@ -2,6 +2,7 @@ import express from "express";
 // This library allows us to change express's default behaviuor of handling 'async' errors
 // Instead of writing 'next(err)' we can directly 'throw' an error even inside 'async' function
 import "express-async-errors";
+import cors from "cors";
 import cookieSession from "cookie-session";
 import { errorHandler } from "./middlewares/error-handler";
 import { NotFoundError } from "./errors/not-found-error";
@@ -10,6 +11,8 @@ import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(
   cookieSession({
