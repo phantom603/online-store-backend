@@ -11,9 +11,9 @@ const app = express();
 app.use(cors());
 app.use(json());
 
-app.use(productsRouter);
-app.use(categoriesRouter);
-app.use(brandsRouter);
+app.use("/api", productsRouter);
+app.use("/api", categoriesRouter);
+app.use("/api", brandsRouter);
 
 app.use((req: Request, res: Response) => {
   res.sendStatus(404);
