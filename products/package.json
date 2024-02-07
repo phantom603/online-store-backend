@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf ./build && tsc",
     "develop": "ts-node-dev --poll src/index.ts",
-    "test": "jest --watchAll --no-cache"
+    "test": "jest",
+    "test:watch": "npm test -- --watchAll --no-cache"
   },
   "keywords": [],
   "author": "",
