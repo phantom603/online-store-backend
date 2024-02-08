@@ -1,31 +1,13 @@
 import fs from "node:fs/promises";
 import * as path from "path";
 
-interface Connection {
-  state: Record<string, any>;
-
-  get(prop?: string): any;
-}
-
-const connection: Connection = {
-  state: {},
-
-  get(prop: string) {
-    if (this.state[prop]) {
-      return this.state[prop];
-    }
-
-    throw new Error(`There is not data "${prop}" in DB`);
-  },
-};
-
 class DB {
   #instance?: DB;
-  #connection: Connection;
+  DB_PATH: string = "";
+  #schema: Array<string> = [];
 
-  constructor(connection: Connection) {
-    this.#connection = connection;
-
+  constructor() {
+    // NOTE: Singleton
     if (typeof this.#instance !== "undefined") {
       return this.#instance;
     }
@@ -33,23 +15,60 @@ class DB {
     this.#instance = this;
   }
 
-  async connect() {
-    if (Object.keys(this.#connection.state).length) {
-      return this.#connection;
+  async connect(dbPath: string) {
+    this.DB_PATH = path.join(__dirname, dbPath);
+
+    const data = await this.readAll();
+
+    for (const item of Object.keys(data)) {
+      this.#schema.push(item);
+    }
+  }
+
+  async read(prop: string) {
+    if (!this.#schema.includes(prop)) {
+      throw new Error(`There is no ${prop} in DB schema`);
     }
 
+    const data = await this.readAll();
+
+    return data[prop];
+  }
+
+  async readAll() {
     try {
-      const json = await fs.readFile(path.join(__dirname, "db.json"), "utf8");
+      const data = await fs.readFile(this.DB_PATH, { encoding: "utf8" });
+      const json = JSON.parse(data);
 
-      this.#connection.state = JSON.parse(json);
-
-      return this.#connection;
+      return json;
     } catch (error: any) {
-      throw new Error(`Cannot get access to db: ${error.message}`);
+      throw new Error(`Cannot read data from db: ${error.message}`);
+    }
+  }
+
+  async write(prop: string, data: any) {
+    if (!this.#schema.includes(prop)) {
+      throw new Error(`There is no ${prop} in DB schema`);
+    }
+
+    const allRecords = await this.readAll();
+
+    allRecords[prop].push(data);
+
+    try {
+      const content = JSON.stringify(allRecords);
+
+      await fs.writeFile(this.DB_PATH, content, {
+        encoding: "utf8",
+      });
+
+      return data;
+    } catch (error: any) {
+      throw new Error(`Cannot write data to db: ${error.message}`);
     }
   }
 }
 
-const db = new DB(connection);
+const db = new DB();
 
 export default db;

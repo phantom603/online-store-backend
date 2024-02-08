@@ -5,8 +5,7 @@ import db from "../../db.service";
 const router = express.Router();
 
 router.get("/brands", async (req: Request, res: Response) => {
-  const connection = await db.connect();
-  const brands = connection.get("brands");
+  const brands = await db.read("brands");
 
   res.send(brands);
 });

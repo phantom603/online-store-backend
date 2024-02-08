@@ -1,1 +1,19 @@
-{"users":[{"id":1,"email":"foo@bar.com","password":"9c04ab36f0f43d40a71759fcb08112281907c2fde97f90d70ad090a99ec5041274142dff3900e65fa8af2c68dffbc57949f5fb90392aa332b28168146cbc13ca.f3923715acb63a53"},{"id":2,"email":"john@doe.com","password":"f12c70b60f2d3d4e7f60ac789cefda5b5431710d513af5810f6e5d98a882ac136bbd369092682796cd957f8bc4db5739a383adc6da1899a3b11537e88041799b.f877495a2caf1493"},{"id":3,"email":"uncle@bob.com","password":"dda11d7918b7e3e7cb18dfdaaeae724b0c0a0c483c9acac6d66b644f3b53357140bedd60aa2e5c7250bea984b6c9554cb32a48ed43f203d538bb742a72711fb0.8e084d60de17bcb6"}]}
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "foo@bar.com",
+      "password": "9c04ab36f0f43d40a71759fcb08112281907c2fde97f90d70ad090a99ec5041274142dff3900e65fa8af2c68dffbc57949f5fb90392aa332b28168146cbc13ca.f3923715acb63a53"
+    },
+    {
+      "id": 2,
+      "email": "john@doe.com",
+      "password": "f12c70b60f2d3d4e7f60ac789cefda5b5431710d513af5810f6e5d98a882ac136bbd369092682796cd957f8bc4db5739a383adc6da1899a3b11537e88041799b.f877495a2caf1493"
+    },
+    {
+      "id": 3,
+      "email": "uncle@bob.com",
+      "password": "dda11d7918b7e3e7cb18dfdaaeae724b0c0a0c483c9acac6d66b644f3b53357140bedd60aa2e5c7250bea984b6c9554cb32a48ed43f203d538bb742a72711fb0.8e084d60de17bcb6"
+    }
+  ]
+}

@@ -7,3 +7,7 @@ export interface Product {
   category: string;
   brand: string;
 }
+
+export interface ProductDTO {
+  // ...
+}

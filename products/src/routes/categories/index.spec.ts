@@ -4,8 +4,7 @@ import db from "../../db.service";
 
 describe("categories route", () => {
   it("should return list of categories", async () => {
-    const connection = await db.connect();
-    const categories = connection.get("categories");
+    const categories = await db.read("categories");
     const response = await request(app).get(`/api/categories`).send();
 
     expect(response.status).toEqual(200);

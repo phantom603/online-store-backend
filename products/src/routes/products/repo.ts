@@ -3,8 +3,7 @@ import { SearchFilter, PropsFilter, PaginationFilter } from "./filters";
 
 class ProductsRepo {
   async getData(query) {
-    const connection = await db.connect();
-    const products = connection.get("products");
+    const products = await db.read("products");
     const filtersChain = new SearchFilter();
 
     filtersChain.setNext(new PropsFilter());
@@ -20,6 +19,12 @@ class ProductsRepo {
       products: result,
       totalCount,
     };
+  }
+
+  async createProduct(data) {
+    const result = await db.write("products", data);
+
+    return result;
   }
 }
 

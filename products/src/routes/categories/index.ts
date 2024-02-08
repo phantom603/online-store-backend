@@ -4,8 +4,8 @@ import db from "../../db.service";
 const router = express.Router();
 
 router.get("/categories", async (req: Request, res: Response) => {
-  const connection = await db.connect();
-  const categories = connection.get("categories");
+  // TODO: use categories repo
+  const categories = await db.read("categories");
 
   res.send(categories);
 });

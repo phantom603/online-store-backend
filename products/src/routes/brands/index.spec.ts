@@ -5,8 +5,7 @@ import db from "../../db.service";
 
 describe("brands route", () => {
   it("should return list of brands", async () => {
-    const connection = await db.connect();
-    const brands = connection.get("brands");
+    const brands = await db.read("brands");
     const response = await request(app).get(`/api/brands`).send();
 
     expect(response.status).toEqual(200);

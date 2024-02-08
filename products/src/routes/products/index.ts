@@ -12,4 +12,23 @@ router.get("/products", async (req: Request, res: Response) => {
   res.send(products);
 });
 
+const defaultProduct = {
+  title: "",
+  price: 0,
+  brand: "",
+  rating: 0,
+  category: "",
+  images: [],
+};
+
+router.post("/products", async (req: Request, res: Response) => {
+  const { body } = req;
+
+  console.log("body", body);
+
+  const result = await productsRepo.createProduct(defaultProduct);
+
+  res.send(result);
+});
+
 export { router as productsRouter };
