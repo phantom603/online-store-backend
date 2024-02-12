@@ -10,7 +10,7 @@ import User from "../../types/user";
 const router = express.Router();
 
 router.post(
-  "/users/signin",
+  "/auth/signin",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password")
