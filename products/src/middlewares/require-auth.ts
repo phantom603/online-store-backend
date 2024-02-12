@@ -1,19 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { NotAuthorizedError } from "../errors/not-authorized-error";
 
-interface UserPayload {
-  id: string;
-  email: string;
-}
-
-declare global {
-  namespace Express {
-    interface Request {
-      currentUser?: UserPayload;
-    }
-  }
-}
-
 export const requireAuth = async (
   req: Request,
   res: Response,
@@ -36,8 +23,6 @@ export const requireAuth = async (
   if (!currentUser) {
     throw new NotAuthorizedError("User is broken or something went wrong");
   }
-
-  req.currentUser = currentUser;
 
   next();
 };

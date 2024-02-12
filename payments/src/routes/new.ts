@@ -9,7 +9,7 @@ const stripe = new Stripe(`${process.env.STRIPE_KEY}`);
 
 router.post(
   "/api/payments",
-  // requireAuth,
+  requireAuth,
   // [body("token").not().isEmpty(), body("orderId").not().isEmpty()],
   // validateRequest,
   async (req: Request, res: Response) => {
@@ -56,13 +56,13 @@ router.post(
       mode: "payment",
       return_url: `${process.env.CLIENT_URL}/payment-status?session_id={CHECKOUT_SESSION_ID}`,
     });
-
     res.send({ clientSecret: session.client_secret });
   }
 );
 
 router.get(
   "/api/payments/status",
+  requireAuth,
   async (req: TypedRequestQuery<{ session_id: string }>, res: Response) => {
     const session = await stripe.checkout.sessions.retrieve(
       req.query.session_id

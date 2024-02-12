@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import productsRepo from "./repo";
+import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
 
@@ -21,7 +22,7 @@ const defaultProduct = {
   images: [],
 };
 
-router.post("/products", async (req: Request, res: Response) => {
+router.post("/products", requireAuth, async (req: Request, res: Response) => {
   const { body } = req;
 
   console.log("body", body);
