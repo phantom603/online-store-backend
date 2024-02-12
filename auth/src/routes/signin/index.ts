@@ -1,16 +1,16 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { Password } from "../services/password";
-import { validateRequest } from "../middlewares/validate-request";
-import { BadRequestError } from "../errors/bad-request-error";
-import db from "../services/db.service";
-import User from "../types/user";
+import { Password } from "../../services/password";
+import { validateRequest } from "../../middlewares/validate-request";
+import { BadRequestError } from "../../errors/bad-request-error";
+import db from "../../services/db.service";
+import User from "../../types/user";
 
 const router = express.Router();
 
 router.post(
-  "/api/users/signin",
+  "/users/signin",
   [
     body("email").isEmail().withMessage("Email must be valid"),
     body("password")
