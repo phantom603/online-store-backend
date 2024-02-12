@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import productsRepo from "./repo";
+// TODO: add validation via middlewares
+// import { requireAuth } from "../../middlewares/require-auth";
 
 const router = express.Router();
 
@@ -31,7 +33,6 @@ router.post(
     //   .withMessage("At least one image is required"),
   ],
   async (req: Request, res: Response) => {
-    console.log(req.body);
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
