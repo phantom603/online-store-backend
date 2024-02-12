@@ -1,8 +1,9 @@
 import db from "../../db.service";
 import { SearchFilter, PropsFilter, PaginationFilter } from "./filters";
+import { ProductI } from "./interfaces";
 
 class ProductsRepo {
-  async getData(query) {
+  async getData(query: any) {
     const products = await db.read("products");
     const filtersChain = new SearchFilter();
 
@@ -21,7 +22,7 @@ class ProductsRepo {
     };
   }
 
-  async createProduct(data) {
+  async createProduct(data: ProductI) {
     const result = await db.write("products", data);
 
     return result;

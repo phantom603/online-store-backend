@@ -18,11 +18,11 @@ const start = async () => {
     await db.connect("db.json");
     console.info("Connected to DB");
   } catch (error: any) {
-    console.error(`Can not connect to DB: ${error.message}`);
+    console.error(`Product server can not connect to DB: ${error.message}`);
   }
 
   app.listen(PORT, () => {
-    console.info(`Server is running on port ${PORT}`);
+    console.info(`Product server is running on port ${PORT}`);
   });
 };
 

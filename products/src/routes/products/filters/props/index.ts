@@ -1,8 +1,9 @@
+import { ProductI, QueryI } from "../../interfaces";
 import Handler from "../basic-filter";
 
 export default class PropsFilter extends Handler {
   filters = {
-    category: (data, query) => {
+    category: (data: Array<ProductI>, query: QueryI) => {
       const { category } = query;
 
       if (category) {
@@ -11,7 +12,7 @@ export default class PropsFilter extends Handler {
 
       return data;
     },
-    brand: (data, query) => {
+    brand: (data: Array<ProductI>, query: QueryI) => {
       const { brand } = query;
 
       if (brand) {
@@ -20,13 +21,13 @@ export default class PropsFilter extends Handler {
 
       return data;
     },
-    price: (data, query) => {
+    price: (data: Array<ProductI>, query: QueryI) => {
       const { price_lte, price_gte } = query;
 
       const min =
-        typeof price_gte === "undefined" ? -Infinity : parseInt(price_gte);
+        typeof price_gte === "undefined" ? -Infinity : parseInt(price_gte, 10);
       const max =
-        typeof price_lte === "undefined" ? Infinity : parseInt(price_lte);
+        typeof price_lte === "undefined" ? Infinity : parseInt(price_lte, 10);
 
       const result = data.filter((item) => {
         return item.price >= min && item.price <= max;
@@ -34,7 +35,7 @@ export default class PropsFilter extends Handler {
 
       return result;
     },
-    rating: (data, query) => {
+    rating: (data: Array<ProductI>, query: QueryI) => {
       const { rating_lte, rating_gte } = query;
 
       const min =
@@ -50,7 +51,7 @@ export default class PropsFilter extends Handler {
     },
   };
 
-  apply(data, query) {
+  apply(data: Array<ProductI>, query: QueryI) {
     let result = [...data];
 
     for (const filter of Object.values(this.filters)) {

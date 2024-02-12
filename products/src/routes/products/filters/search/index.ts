@@ -1,7 +1,8 @@
+import { ProductI, QueryI } from "../../interfaces";
 import Handler from "../basic-filter";
 
 export default class SearchFilter extends Handler {
-  apply(data, query) {
+  apply(data: Array<ProductI>, query: QueryI) {
     const { q } = query;
 
     if (q) {

@@ -1,6 +1,10 @@
 import fs from "node:fs/promises";
 import * as path from "path";
 
+const getId = () => {
+  return Math.random().toString(16).slice(2);
+};
+
 class DB {
   #instance?: DB;
   DB_PATH: string = "";
@@ -52,6 +56,8 @@ class DB {
     }
 
     const allRecords = await this.readAll();
+
+    data.id = getId();
 
     allRecords[prop].push(data);
 
