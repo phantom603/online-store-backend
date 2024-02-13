@@ -6,7 +6,8 @@ import cors from "cors";
 import cookieSession from "cookie-session";
 import { errorHandler } from "./middlewares/error-handler";
 import { NotFoundError } from "./errors/not-found-error";
-import { createPaymentRouter } from "./routes/new";
+import { createPaymentRouter } from "./routes";
+import { paymentStatusRouter } from "./routes/payment-status";
 
 const app = express();
 
@@ -20,7 +21,8 @@ app.use(
   })
 );
 
-app.use(createPaymentRouter);
+app.use("/api", createPaymentRouter);
+app.use("/api", paymentStatusRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

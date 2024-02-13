@@ -12,7 +12,12 @@ import { signinRouter } from "./routes/signin";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(
   cookieSession({
@@ -22,9 +27,9 @@ app.use(
   }),
 );
 
-app.use(currentUserRouter);
-app.use(signinRouter);
-app.use(signoutRouter);
+app.use("/api", currentUserRouter);
+app.use("/api", signinRouter);
+app.use("/api", signoutRouter);
 
 app.all("*", async (req, res) => {
   throw new NotFoundError();

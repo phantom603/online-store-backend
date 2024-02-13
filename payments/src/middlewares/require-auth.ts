@@ -9,7 +9,10 @@ interface UserPayload {
 declare global {
   namespace Express {
     interface Request {
-      currentUser?: UserPayload;
+      currentUser?: {
+        id: string;
+        email: string;
+      };
     }
   }
 }
@@ -24,7 +27,7 @@ export const requireAuth = async (
   }
 
   const response = await fetch(
-    `${process.env.AUTH_SERVICE_URL}/api/users/currentuser`,
+    `${process.env.AUTH_SERVICE_URL}/api/auth/currentuser`,
     {
       method: "GET",
       // pass cookies which contain encoded JWT
