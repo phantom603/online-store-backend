@@ -39,12 +39,12 @@ export default class PropsFilter extends Handler {
       const { rating_lte, rating_gte } = query;
 
       const min =
-        typeof rating_lte === "undefined" ? -Infinity : parseFloat(rating_lte);
+        typeof rating_gte === "undefined" ? -Infinity : parseFloat(rating_gte);
       const max =
-        typeof rating_gte === "undefined" ? Infinity : parseFloat(rating_gte);
+        typeof rating_lte === "undefined" ? Infinity : parseFloat(rating_lte);
 
       const result = data.filter((item) => {
-        return item.price >= min && item.price <= max;
+        return item.rating >= min && item.rating <= max;
       });
 
       return result;

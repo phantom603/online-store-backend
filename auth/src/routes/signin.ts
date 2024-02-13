@@ -31,7 +31,7 @@ router.post(
 
     const passwordsMatch = await Password.compare(
       existingUser.password,
-      password
+      password,
     );
     if (!passwordsMatch) {
       throw new BadRequestError("Invalid Credentials");
@@ -43,7 +43,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY!,
     );
 
     // Store it on session object
@@ -52,7 +52,7 @@ router.post(
     };
 
     res.status(200).send(existingUser);
-  }
+  },
 );
 
 export { router as signinRouter };

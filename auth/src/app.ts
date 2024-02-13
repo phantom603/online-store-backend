@@ -19,7 +19,7 @@ app.use(
     signed: false,
     // disable secure cookies (transmitted only over https) for test environment
     secure: process.env.NODE_ENV === "production",
-  })
+  }),
 );
 
 app.use(currentUserRouter);
