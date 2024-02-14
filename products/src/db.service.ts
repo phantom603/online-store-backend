@@ -59,7 +59,7 @@ class DB {
 
     data.id = getId();
 
-    allRecords[prop].push(data);
+    allRecords[prop].unshift(data);
 
     try {
       const content = JSON.stringify(allRecords);
