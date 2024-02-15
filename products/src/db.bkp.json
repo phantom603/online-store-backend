@@ -1,47 +1,6 @@
 {
   "products": [
     {
-      "title": "1111",
-      "price": "100",
-      "brand": "1",
-      "rating": "5",
-      "category": "1",
-      "images": ["https://i.imgur.com/b9oc8PG.jpeg"],
-      "id": "559c8bfba296e"
-    },
-    {
-      "title": "1111",
-      "price": "100",
-      "brand": "1",
-      "rating": "5",
-      "category": "1",
-      "id": "c2fb1ed3d9f99"
-    },
-    {
-      "title": "1",
-      "price": "100",
-      "brand": "1",
-      "rating": "5",
-      "category": "1",
-      "id": "6ab68a4e26ed1"
-    },
-    {
-      "title": "1",
-      "price": "100",
-      "brand": "1",
-      "rating": "5",
-      "category": "1",
-      "id": "8c4cb31fccbc3"
-    },
-    {
-      "title": "1",
-      "price": "100",
-      "brand": "1",
-      "rating": "5",
-      "category": "1",
-      "id": "fe32c0e6a0dc3"
-    },
-    {
       "id": "76w0hz7015kkr9kjkav",
       "images": [
         "https://content2.rozetka.com.ua/goods/images/big_tile/370191080.jpg"
