@@ -33,26 +33,38 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    const line_items = req.body.products.map((product: Product) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: product.title,
-          images: product.images,
-          metadata: {
-            rating: product.rating,
-            category: product.category,
-            brand: product.brand,
+    let line_items: any = [];
+    let metadata: { [name: string]: any } = {};
+
+    req.body.products.forEach((product: Product, i: number) => {
+      line_items.push({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: product.title,
+            images: product.images,
+            metadata: {
+              rating: product.rating,
+              category: product.category,
+              brand: product.brand,
+            },
           },
           unit_amount: product.price * 100,
         },
-      },
-      quantity: product.quantity,
-    }));
+        quantity: product.quantity,
+      });
+
+      metadata[`product_${i + 1}`] = JSON.stringify({
+        title: product.title,
+        images: [product.images[0]],
+        price: product.price,
+        quantity: product.quantity,
+      });
+    });
 
     const session = await stripe.checkout.sessions.create({
       line_items,
-      metadata: { products: JSON.stringify(req.body.products) },
+      metadata,
       customer_email: req.currentUser?.email,
       ui_mode: "embedded",
       mode: "payment",
