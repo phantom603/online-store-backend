@@ -28,11 +28,12 @@ router.post(
       .isInt({ min: 0, max: 5 })
       .withMessage("Rating must be a number between 0 and 5"),
     body("category").notEmpty().withMessage("Category is required"),
-    // body("images")
-    //   .isArray({ min: 1 })
-    //   .withMessage("At least one image is required"),
+    body("images")
+      .optional()
+      .isArray({ min: 1 })
+      .withMessage("At least one image is required"),
   ],
-  async (req: Request, res: Response) => {
+  async (req: any, res: any) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

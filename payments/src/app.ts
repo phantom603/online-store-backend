@@ -11,14 +11,19 @@ import { paymentStatusRouter } from "./routes/payment-status";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(
   cookieSession({
     signed: false,
     // disable secure cookies (transmitted only over https) for test environment
     secure: process.env.NODE_ENV === "production",
-  })
+  }),
 );
 
 app.use("/api", createPaymentRouter);
