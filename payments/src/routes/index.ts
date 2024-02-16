@@ -33,8 +33,6 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
-    console.log("Payment Service Current User Email", req.currentUser?.email);
-
     const line_items = req.body.products.map((product: Product) => ({
       price_data: {
         currency: "usd",
@@ -54,12 +52,14 @@ router.post(
 
     const session = await stripe.checkout.sessions.create({
       line_items,
+      metadata: { products: JSON.stringify(req.body.products) },
       customer_email: req.currentUser?.email,
       ui_mode: "embedded",
       mode: "payment",
       return_url: `${process.env.CLIENT_URL}/payment-status?session_id={CHECKOUT_SESSION_ID}`,
     });
-    res.status(200).send();
+
+    res.send({ clientSecret: session.client_secret });
   }
 );
 
