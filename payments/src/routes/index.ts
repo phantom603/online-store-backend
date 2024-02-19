@@ -39,7 +39,7 @@ router.post(
     req.body.products.forEach((product: Product, i: number) => {
       line_items.push({
         price_data: {
-          currency: "usd",
+          currency: "eur",
           product_data: {
             name: product.title,
             images: product.images,
@@ -66,6 +66,7 @@ router.post(
       line_items,
       metadata,
       customer_email: req.currentUser?.email,
+      // payment_method_types: ["card", "ideal"],
       ui_mode: "embedded",
       mode: "payment",
       return_url: `${process.env.CLIENT_URL}/payment-status?session_id={CHECKOUT_SESSION_ID}`,
