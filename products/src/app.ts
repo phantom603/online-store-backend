@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express from "express";
 // This library allows us to change express's default behaviuor of handling 'async' errors
 // Instead of writing 'next(err)' we can directly 'throw' an error even inside 'async' function
 import "express-async-errors";
@@ -13,6 +13,7 @@ import { errorHandler } from "./middlewares/error-handler";
 
 const app = express();
 
+app.set("trust proxy", true);
 app.use(
   cors({
     origin: true,
@@ -28,11 +29,11 @@ app.use(
   }),
 );
 
-app.use("/api", productsRouter);
-app.use("/api", categoriesRouter);
-app.use("/api", brandsRouter);
+app.use("/api/shop", productsRouter);
+app.use("/api/shop", categoriesRouter);
+app.use("/api/shop", brandsRouter);
 
-app.all("*", async (req, res) => {
+app.all("*", async () => {
   throw new NotFoundError();
 });
 
