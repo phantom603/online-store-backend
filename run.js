@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 
-const path = require("path");
-const concurrently = require("concurrently");
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import concurrently from "concurrently";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const { result } = concurrently(
   [
     {

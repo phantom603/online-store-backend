@@ -1,5 +1,6 @@
 {
   "name": "online-store-backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "run.js",
@@ -11,5 +12,11 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-http-proxy": "^2.0.0",
+    "http-proxy-middleware": "^2.0.6"
   }
 }
