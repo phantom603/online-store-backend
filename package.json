@@ -5,7 +5,9 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "start": "node run.js"
+    "start": "cross-env NODE_ENV=prod node run.js",
+    "develop": "cross-env NODE_ENV=develop node run.js",
+    "proxy": "node api-proxy.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "express": "^4.18.2",
     "express-http-proxy": "^2.0.0",
     "http-proxy-middleware": "^2.0.6"
