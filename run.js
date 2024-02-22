@@ -33,7 +33,7 @@ const run = async (command = "") => {
       },
       {
         command,
-        name: "products server",
+        name: "shop server",
         cwd: path.resolve(__dirname, "shop"),
       },
     ],
