@@ -6,7 +6,7 @@ import productsRepo from "./repo";
 describe("products route", () => {
   it("should return list of products", async () => {
     const { products } = await productsRepo.getData({});
-    const response = await request(app).get(`/api/products`).send();
+    const response = await request(app).get(`/api/shop/products`).send();
 
     expect(response.status).toEqual(200);
     expect(response.body).toEqual(products);

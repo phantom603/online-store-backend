@@ -9,13 +9,13 @@ export interface ProductI {
 }
 
 export interface QueryI {
-  q: string;
-  _limit: string;
-  _page: string;
-  category: Array<string> | string;
-  brand: Array<string> | string;
-  price_lte: string;
-  price_gte: string;
-  rating_lte: string;
-  rating_gte: string;
+  q?: string;
+  _limit?: string;
+  _page?: string;
+  category?: Array<string> | string;
+  brand?: Array<string> | string;
+  price_lte?: string;
+  price_gte?: string;
+  rating_lte?: string;
+  rating_gte?: string;
 }
