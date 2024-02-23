@@ -16,7 +16,6 @@ const start = async () => {
 
   try {
     await db.connect("db.json");
-    console.info("Connected to DB");
   } catch (error: any) {
     console.error(`Product server can not connect to DB: ${error.message}`);
   }

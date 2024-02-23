@@ -5,10 +5,23 @@ const getId = () => {
   return Math.random().toString(16).slice(2);
 };
 
+const wait = (delay: number) => {
+  return new Promise((resolve: any) => {
+    setTimeout(
+      () => {
+        return resolve();
+      },
+      delay * 60 * 1000,
+    );
+  });
+};
+
 class DB {
   #instance?: DB;
   DB_PATH: string = "";
   #schema: Array<string> = [];
+  isConnectionOpen = true;
+  DB_RESET_TIME = 15; // 15 mins
 
   constructor() {
     // NOTE: Singleton
@@ -19,6 +32,53 @@ class DB {
     this.#instance = this;
   }
 
+  runScheduler(delay = 0) {
+    const runInterval = async (delay: number) => {
+      const isConnected = await this.checkConnection();
+
+      if (!isConnected) {
+        return;
+      }
+
+      try {
+        await wait(delay);
+        await this.resetDb();
+
+        runInterval(delay);
+      } catch (error) {
+        console.error("Something went wrong in DB reset interval", error);
+      }
+    };
+
+    runInterval(delay);
+
+    console.info(`DB will be reset every ${delay} mins`);
+  }
+
+  checkConnection() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.isConnectionOpen);
+      }, 0);
+    });
+  }
+
+  async resetDb() {
+    const dbPath = path.join(__dirname, "db.bkp.json");
+    const content = await fs.readFile(dbPath, { encoding: "utf8" });
+    await fs.writeFile(this.DB_PATH, content, {
+      encoding: "utf8",
+    });
+
+    console.info("DB was reset", new Date().toISOString());
+  }
+
+  disconnect() {
+    this.isConnectionOpen = false;
+
+    console.info("DB disconnected");
+  }
+
   async connect(dbPath: string) {
     this.DB_PATH = path.join(__dirname, dbPath);
 
@@ -27,6 +87,10 @@ class DB {
     for (const item of Object.keys(data)) {
       this.#schema.push(item);
     }
+
+    console.info("Connected to DB");
+
+    this.runScheduler(this.DB_RESET_TIME);
   }
 
   async read(prop: string) {
