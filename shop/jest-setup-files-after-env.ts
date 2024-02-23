@@ -13,4 +13,5 @@ beforeEach(async () => {
 afterAll(async () => {
   // TODO: clear DB
   console.log("afterAll");
+  db.disconnect();
 });

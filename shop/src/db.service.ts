@@ -18,9 +18,9 @@ const wait = (delay: number) => {
 
 class DB {
   #instance?: DB;
-  DB_PATH: string = "";
   #schema: Array<string> = [];
-  isConnectionOpen = true;
+  DB_PATH: string = "";
+  isConnectionOpen = false;
   DB_RESET_TIME = 15; // 15 mins
 
   constructor() {
@@ -80,6 +80,11 @@ class DB {
   }
 
   async connect(dbPath: string) {
+    if (this.isConnectionOpen) {
+      console.info(`DB connection already exist`);
+      return;
+    }
+
     this.DB_PATH = path.join(__dirname, dbPath);
 
     const data = await this.readAll();
@@ -91,6 +96,8 @@ class DB {
     console.info("Connected to DB");
 
     this.runScheduler(this.DB_RESET_TIME);
+
+    this.isConnectionOpen = true;
   }
 
   async read(prop: string) {
