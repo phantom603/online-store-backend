@@ -6,7 +6,8 @@
   "scripts": {
     "seedUsers": "ts-node ./seed-users.ts",
     "start": "ts-node-dev src/index.ts",
-    "develop": "ts-node-dev src/index.ts"
+    "develop": "ts-node-dev src/index.ts",
+    "postinstall": "cp .example.env .env && npm run seedUsers"
   },
   "keywords": [],
   "author": "",
