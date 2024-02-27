@@ -2,15 +2,25 @@
 
 ## Microservices list
 
-- shop | port 3001
-- auth | port 3002
-- payments | port 3003
+- shop
+- auth
+- payments
 
 ---
 
-- api-gateway | port 3000
+- api-gateway
 
-## How to start
+## Install
+
+1. Install dependencies in each microservice
+
+```bash
+./install.sh
+```
+
+2. Add values to .env files in each microservice
+
+## Development
 
 To run all microservices in development mode:
 
