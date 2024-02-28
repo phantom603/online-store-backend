@@ -6,8 +6,9 @@
   "main": "run.js",
   "scripts": {
     "start": "cross-env NODE_ENV=prod node run.js",
+    "proxy": "node api-proxy.js",
     "develop": "cross-env NODE_ENV=develop node run.js",
-    "proxy": "node api-proxy.js"
+    "develop-proxy": "concurrently \"npm:develop\" \"npm:proxy\""
   },
   "keywords": [],
   "author": "",
