@@ -7,12 +7,9 @@ const getId = () => {
 
 const wait = (delay: number) => {
   return new Promise((resolve: any) => {
-    setTimeout(
-      () => {
-        return resolve();
-      },
-      delay * 60 * 1000,
-    );
+    setTimeout(() => {
+      return resolve();
+    }, delay * 60 * 1000);
   });
 };
 
@@ -85,7 +82,7 @@ class DB {
       return;
     }
 
-    this.DB_PATH = path.join(__dirname, dbPath);
+    this.DB_PATH = dbPath;
 
     const data = await this.readAll();
 
@@ -148,4 +145,4 @@ class DB {
 
 const db = new DB();
 
-export default db;
+export { db };

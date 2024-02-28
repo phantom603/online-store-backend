@@ -1,4 +1,4 @@
-import db from "../../db.service";
+import { db } from "common";
 import { SearchFilter, PropsFilter, PaginationFilter } from "./filters";
 import { ProductI } from "./interfaces";
 

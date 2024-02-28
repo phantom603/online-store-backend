@@ -4,8 +4,8 @@ import express from "express";
 import "express-async-errors";
 import cors from "cors";
 import cookieSession from "cookie-session";
-import { errorHandler } from "./middlewares/error-handler";
-import { NotFoundError } from "./errors/not-found-error";
+import { errorHandler } from "common";
+import { NotFoundError } from "common";
 import { signoutRouter } from "./routes/signout";
 import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
@@ -24,7 +24,7 @@ app.use(
     signed: false,
     // disable secure cookies (transmitted only over https) for test environment
     secure: process.env.NODE_ENV === "production",
-  }),
+  })
 );
 
 app.use("/api", currentUserRouter);

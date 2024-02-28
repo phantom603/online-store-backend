@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { requireAuth } from "../middlewares/require-auth";
+import { requireAuth } from "common";
 import Stripe from "stripe";
-import { validateRequest } from "../middlewares/validate-request";
+import { validateRequest } from "common";
 import Product from "../types/product";
 
 const router = express.Router();

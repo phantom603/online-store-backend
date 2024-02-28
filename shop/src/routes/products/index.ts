@@ -1,8 +1,8 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import productsRepo from "./repo";
-import { requireAuth } from "../../middlewares/require-auth";
-import { validateRequest } from "../../middlewares/validate-request";
+import { requireAuth } from "common";
+import { validateRequest } from "common";
 
 const router = express.Router();
 
@@ -40,7 +40,7 @@ router.post(
     const result = await productsRepo.createProduct(body);
 
     res.send(result);
-  },
+  }
 );
 
 export { router as productsRouter };

@@ -1,7 +1,7 @@
 import "dotenv/config";
-
+import * as path from "path";
 import app from "./app";
-import db from "./db.service";
+import { db } from "common";
 
 const start = async () => {
   const PORT = process.env.PORT;
@@ -15,7 +15,7 @@ const start = async () => {
   });
 
   try {
-    await db.connect("db.json");
+    await db.connect(path.join(__dirname, "db.json"));
   } catch (error: any) {
     console.error(`Product server can not connect to DB: ${error.message}`);
   }

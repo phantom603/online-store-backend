@@ -8,8 +8,8 @@ import cookieSession from "cookie-session";
 import { productsRouter } from "./routes/products";
 import { categoriesRouter } from "./routes/categories";
 import { brandsRouter } from "./routes/brands";
-import { NotFoundError } from "./errors/not-found-error";
-import { errorHandler } from "./middlewares/error-handler";
+import { NotFoundError } from "common";
+import { errorHandler } from "common";
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: true,
     credentials: true,
-  }),
+  })
 );
 app.use(express.json());
 app.use(
@@ -26,7 +26,7 @@ app.use(
     signed: false,
     // disable secure cookies (transmitted only over https) for test environment
     secure: process.env.NODE_ENV === "production",
-  }),
+  })
 );
 
 app.use("/api/shop", productsRouter);

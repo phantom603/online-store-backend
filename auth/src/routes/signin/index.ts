@@ -2,8 +2,8 @@ import express, { Request, Response } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
 import { Password } from "../../services/password";
-import { validateRequest } from "../../middlewares/validate-request";
-import { BadRequestError } from "../../errors/bad-request-error";
+import { validateRequest } from "common";
+import { BadRequestError } from "common";
 import db from "../../services/db.service";
 import User from "../../types/user";
 
@@ -31,7 +31,7 @@ router.post(
 
     const passwordsMatch = await Password.compare(
       existingUser.password,
-      password,
+      password
     );
     if (!passwordsMatch) {
       throw new BadRequestError("Invalid Credentials");
@@ -43,7 +43,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!,
+      process.env.JWT_KEY!
     );
 
     // Store it on session object
@@ -52,7 +52,7 @@ router.post(
     };
 
     res.status(200).send(existingUser);
-  },
+  }
 );
 
 export { router as signinRouter };

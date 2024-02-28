@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import Stripe from "stripe";
-import { requireAuth } from "../../middlewares/require-auth";
+import { requireAuth } from "common";
 
 const router = express.Router();
 const stripe = new Stripe(`${process.env.STRIPE_KEY}`);
