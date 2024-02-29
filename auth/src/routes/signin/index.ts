@@ -4,8 +4,7 @@ import jwt from "jsonwebtoken";
 import { Password } from "../../services/password";
 import { validateRequest } from "common";
 import { BadRequestError } from "common";
-import db from "../../services/db.service";
-import User from "../../types/user";
+import usersRepo from "../../services/repo";
 
 const router = express.Router();
 
@@ -21,8 +20,7 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    const connection = await db.connect();
-    const users: User[] = connection.get("users");
+    const { users } = await usersRepo.getUsers();
 
     const existingUser = users.find((u) => u.email === email);
     if (!existingUser) {

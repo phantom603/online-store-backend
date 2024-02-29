@@ -10,6 +10,10 @@ const start = async () => {
     throw new Error("STRIPE_KEY must be defined");
   }
 
+  process.on("unhandledRejection", (error) => {
+    console.error("unhandledRejection", error);
+  });
+
   app.listen(process.env.PORT, () => {
     console.log(`Payment Service: Listening on port ${process.env.PORT}`);
   });
