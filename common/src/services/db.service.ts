@@ -16,9 +16,10 @@ const wait = (delay: number) => {
 class DB {
   #instance?: DB;
   #schema: Array<string> = [];
-  DB_PATH: string = "";
-  isConnectionOpen = false;
-  DB_RESET_TIME = 15; // 15 mins
+  #DB_PATH: string = "";
+  #DB_BACKUP_PATH: string = "";
+  #isConnectionOpen = false;
+  #DB_RESET_TIME = 15; // 15 mins
 
   constructor() {
     // NOTE: Singleton
@@ -55,15 +56,16 @@ class DB {
   checkConnection() {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(this.isConnectionOpen);
+        resolve(this.#isConnectionOpen);
       }, 0);
     });
   }
 
   async resetDb() {
-    const dbPath = path.join(__dirname, "db.bkp.json");
-    const content = await fs.readFile(dbPath, { encoding: "utf8" });
-    await fs.writeFile(this.DB_PATH, content, {
+    const content = await fs.readFile(this.#DB_BACKUP_PATH, {
+      encoding: "utf8",
+    });
+    await fs.writeFile(this.#DB_PATH, content, {
       encoding: "utf8",
     });
 
@@ -71,18 +73,25 @@ class DB {
   }
 
   disconnect() {
-    this.isConnectionOpen = false;
+    this.#isConnectionOpen = false;
 
     console.info("DB disconnected");
   }
 
-  async connect(dbPath: string) {
-    if (this.isConnectionOpen) {
+  async connect({
+    dbPath,
+    dbBackupPath = "",
+  }: {
+    dbPath: string;
+    dbBackupPath?: string;
+  }) {
+    if (this.#isConnectionOpen) {
       console.info(`DB connection already exist`);
       return;
     }
 
-    this.DB_PATH = dbPath;
+    this.#DB_PATH = dbPath;
+    this.#DB_BACKUP_PATH = dbBackupPath;
 
     const data = await this.readAll();
 
@@ -92,9 +101,9 @@ class DB {
 
     console.info("Connected to DB");
 
-    this.runScheduler(this.DB_RESET_TIME);
+    if (!!this.#DB_BACKUP_PATH) this.runScheduler(this.#DB_RESET_TIME);
 
-    this.isConnectionOpen = true;
+    this.#isConnectionOpen = true;
   }
 
   async read(prop: string) {
@@ -109,7 +118,7 @@ class DB {
 
   async readAll() {
     try {
-      const data = await fs.readFile(this.DB_PATH, { encoding: "utf8" });
+      const data = await fs.readFile(this.#DB_PATH, { encoding: "utf8" });
       const json = JSON.parse(data);
 
       return json;
@@ -132,7 +141,7 @@ class DB {
     try {
       const content = JSON.stringify(allRecords);
 
-      await fs.writeFile(this.DB_PATH, content, {
+      await fs.writeFile(this.#DB_PATH, content, {
         encoding: "utf8",
       });
 

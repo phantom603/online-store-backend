@@ -15,7 +15,10 @@ const start = async () => {
   });
 
   try {
-    await db.connect(path.join(__dirname, "db.json"));
+    await db.connect({
+      dbPath: path.join(__dirname, "db.json"),
+      dbBackupPath: path.join(__dirname, "db.bkp.json"),
+    });
   } catch (error: any) {
     console.error(`Product server can not connect to DB: ${error.message}`);
   }
