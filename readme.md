@@ -5,9 +5,6 @@
 - shop
 - auth
 - payments
-
----
-
 - api-gateway
 
 ## Install
@@ -22,20 +19,8 @@
 
 ## Development
 
-To run all microservices and api-gateway in development mode:
+To run all microservices with api-gateway via PM2 in development mode:
 
 ```bash
-npm run develop-proxy
-```
-
-To run just microservices in development mode:
-
-```bash
-npm run develop
-```
-
-To run just api-gateway in development mode:
-
-```bash
-npm run proxy
+npm start
 ```

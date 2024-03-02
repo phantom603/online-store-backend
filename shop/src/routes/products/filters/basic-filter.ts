@@ -9,7 +9,7 @@ interface HandlerInterface {
 export default class Handler implements HandlerInterface {
   nextHandler;
 
-  setNext(handler) {
+  setNext(handler: HandlerInterface) {
     this.nextHandler = handler;
 
     return this.nextHandler;

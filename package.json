@@ -1,26 +1,19 @@
 {
   "name": "online-store-backend",
-  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "run.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=prod node run.js",
-    "proxy": "node api-proxy.js",
-    "develop": "cross-env NODE_ENV=develop node run.js",
-    "develop-proxy": "concurrently \"npm:develop\" \"npm:proxy\""
+    "start": "pm2 start ecosystem.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
-    "express": "^4.18.2",
-    "express-http-proxy": "^2.0.0",
-    "http-proxy-middleware": "^2.0.6"
+    "pm2": "^5.3.1"
   }
 }

@@ -7,19 +7,17 @@ const __dirname = path.dirname(__filename);
 
 const npmCommands = {
   develop: "npm run develop",
-  // TODO: implement start command for each service
-  prod: "npm run start",
 };
 
-const NODE_ENV = process.env.NODE_ENV;
+const NODE_ENV = process.env.NODE_ENV || "develop";
 const npmCommand = npmCommands[NODE_ENV];
 
 if (typeof npmCommand === "undefined") {
   throw new Error(`There is no command called "${NODE_ENV}"`);
 }
 
-const run = async (command = "") => {
-  const { result } = await concurrently(
+const run = (command = "") => {
+  const { result } = concurrently(
     [
       {
         command,
@@ -35,6 +33,11 @@ const run = async (command = "") => {
         command,
         name: "shop server",
         cwd: path.resolve(__dirname, "shop"),
+      },
+      {
+        command,
+        name: "api-gateway server",
+        cwd: path.resolve(__dirname, "api-gateway"),
       },
     ],
     {

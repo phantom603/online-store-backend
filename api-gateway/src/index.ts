@@ -22,6 +22,7 @@ const services = [
 for (const service of services) {
   app.use(
     `/api/${service.name}`,
+    // @ts-ignore
     createProxyMiddleware({
       target: `http://localhost:${service.port}/`,
       changeOrigin: true,
