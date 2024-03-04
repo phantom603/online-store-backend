@@ -4,7 +4,8 @@
   "description": "",
   "main": "run.js",
   "scripts": {
-    "start": "pm2 start ecosystem.config.js"
+    "start": "pm2 start ecosystem.config.js",
+    "deploy": "rsync -vzrl --no-perms --no-owner --no-group --delete build/ root@online-editor-client:/var/www/shop.bootcamp.place/server/"
   },
   "keywords": [],
   "author": "",
