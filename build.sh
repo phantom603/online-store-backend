@@ -3,7 +3,7 @@
 rm -rf build;
 find . -maxdepth 2 -mindepth 2 -name package.json -execdir npm run build \;
 mkdir -p build;
-cp ecosystem.prod.js build/ecosystem.config.js;
+cp ecosystem.config.js build;
 cp package.json package-lock.json build;
 cd build && npm i --omit=dev && cd ../;
 

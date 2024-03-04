@@ -5,17 +5,6 @@ import concurrently from "concurrently";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const npmCommands = {
-  develop: "npm run develop",
-};
-
-const NODE_ENV = process.env.NODE_ENV || "develop";
-const npmCommand = npmCommands[NODE_ENV];
-
-if (typeof npmCommand === "undefined") {
-  throw new Error(`There is no command called "${NODE_ENV}"`);
-}
-
 const run = (command = "") => {
   const { result } = concurrently(
     [
@@ -50,7 +39,7 @@ const run = (command = "") => {
 };
 
 // TODO: add logging to success and error callbacks
-run(npmCommand)
+run("npm start")
   .then(
     (...props) => {
       console.log("success", props);

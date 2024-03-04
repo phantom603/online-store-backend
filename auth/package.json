@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && tsc && cp ./src/db.json ./build && cp .env ./build && cp ./package.json ./package-lock.json ./build && cd build && npm pkg delete scripts && npm pkg set scripts.start='node -r dotenv/config index.js'",
     "seedUsers": "ts-node src/seed-users.ts",
-    "develop": "ts-node-dev -r dotenv/config  src/index.ts",
+    "start": "ts-node-dev -r dotenv/config  src/index.ts",
     "postinstall": "cp -n .example.env .env || true && npm run seedUsers"
   },
   "keywords": [],
