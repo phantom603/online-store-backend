@@ -18,12 +18,12 @@ router.get(
       status: order.status,
       created: order.created,
       products: Object.values(order.metadata || {}).map((product) =>
-        JSON.parse(product)
+        JSON.parse(product),
       ),
     }));
 
     res.send(orders);
-  }
+  },
 );
 
 export { router as ordersRouter };

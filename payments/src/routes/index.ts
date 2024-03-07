@@ -1,8 +1,7 @@
 import express, { Request, Response } from "express";
 import { body } from "express-validator";
-import { requireAuth } from "common";
+import { requireAuth, validateRequest } from "common";
 import Stripe from "stripe";
-import { validateRequest } from "common";
 import Product from "../types/product";
 
 const router = express.Router();
@@ -73,7 +72,7 @@ router.post(
     });
 
     res.send({ clientSecret: session.client_secret });
-  }
+  },
 );
 
 export { router as createPaymentRouter };
