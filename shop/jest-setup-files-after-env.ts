@@ -1,17 +1,20 @@
-import db from "./src/db.service";
+import * as path from "path";
+import { db } from "common";
 
 beforeAll(async () => {
   console.log("beforeAll");
-  // TODO: make auth call here, maybe...
-  await db.connect("db.json");
+
+  await db.connect({
+    dbPath: path.join(__dirname, "./src/db.json"),
+  });
 });
 
-beforeEach(async () => {
+beforeEach(() => {
   console.log("beforeEach");
 });
 
-afterAll(async () => {
-  // TODO: clear DB
-  console.log("afterAll");
+afterAll(() => {
+  console.log("after all");
+
   db.disconnect();
 });

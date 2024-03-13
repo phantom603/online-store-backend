@@ -6,8 +6,11 @@ export default class PaginationFilter extends Handler {
     const { _page, _limit } = query;
 
     if (_page && _limit) {
-      const end = parseInt(_page, 10) * parseInt(_limit, 10);
-      const start = end - parseInt(_limit, 10);
+      const page = parseInt(_page, 10);
+      const limit = parseInt(_limit, 10);
+
+      const end = page * limit;
+      const start = end - limit;
 
       const result = data.slice(start, end);
 

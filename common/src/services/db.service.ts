@@ -7,9 +7,12 @@ const getId = () => {
 
 const wait = (delay: number) => {
   return new Promise((resolve: any) => {
-    setTimeout(() => {
-      return resolve();
-    }, delay * 60 * 1000);
+    setTimeout(
+      () => {
+        return resolve();
+      },
+      delay * 60 * 1000,
+    );
   });
 };
 
@@ -101,7 +104,7 @@ class DB {
 
     console.info("Connected to DB");
 
-    if (!!this.#DB_BACKUP_PATH) this.runScheduler(this.#DB_RESET_TIME);
+    if (this.#DB_BACKUP_PATH) this.runScheduler(this.#DB_RESET_TIME);
 
     this.#isConnectionOpen = true;
   }

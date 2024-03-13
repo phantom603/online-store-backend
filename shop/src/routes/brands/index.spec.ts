@@ -1,7 +1,7 @@
 import request from "supertest";
 
 import app from "../../app";
-import db from "../../db.service";
+import { db } from "common";
 
 describe("brands route", () => {
   it("should return list of brands", async () => {

@@ -7,6 +7,7 @@
     "build": "rimraf ./build && tsc && cp ./src/db.bkp.json ./build/db.json && cp ./src/db.bkp.json ./build/db.bkp.json && cp .env ./build && cp ./package.json ./package-lock.json ./build && cd build && npm pkg delete scripts && npm pkg set scripts.start='node -r dotenv/config index.js'",
     "start": "ts-node-dev -r dotenv/config src/index.ts",
     "test": "jest",
+    "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm test -- --watchAll --no-cache",
     "postinstall": "cp -n .example.env .env || true"
   },
@@ -34,7 +35,6 @@
     "express-validator": "^7.0.1",
     "common": "file:../common",
     "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "express-validator": "^7.0.1"
+    "express": "^4.18.2"
   }
 }

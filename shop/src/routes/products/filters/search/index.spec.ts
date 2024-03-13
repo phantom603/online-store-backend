@@ -12,4 +12,11 @@ describe("products search filter", () => {
 
     expect(result.length).toBe(1);
   });
+
+  it("should not do filtering if query is empty", () => {
+    const searchFilter = new SearchFilter();
+    const result = searchFilter.apply(products, {});
+
+    expect(result.length).toBe(6);
+  });
 });
