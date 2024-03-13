@@ -15,4 +15,8 @@ describe("products route", () => {
   it("should set header X-Total-Count", () => {
     // TODO: implement it
   });
+
+  it("should create a new product", () => {
+    // TODO: implement it
+  });
 });

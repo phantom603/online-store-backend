@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf ./build && tsc && cp prod.env ./build/.env && cp ./package.json ./package-lock.json ./build && cd build && npm pkg delete scripts && npm pkg set scripts.start='node -r dotenv/config index.js'",
     "start": "ts-node-dev -r dotenv/config src/index.ts",
+    "test": "jest",
     "postinstall": "cp -n .example.env .env || true"
   },
   "keywords": [],

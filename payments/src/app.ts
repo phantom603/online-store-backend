@@ -16,7 +16,7 @@ app.use(
   cors({
     origin: true,
     credentials: true,
-  })
+  }),
 );
 app.use(express.json());
 app.use(
@@ -24,7 +24,7 @@ app.use(
     signed: false,
     // disable secure cookies (transmitted only over https) for test environment
     secure: process.env.NODE_ENV === "production",
-  })
+  }),
 );
 
 app.use("/api", createPaymentRouter);
@@ -37,4 +37,4 @@ app.all("*", async (req, res) => {
 
 app.use(errorHandler);
 
-export { app };
+export default app;
