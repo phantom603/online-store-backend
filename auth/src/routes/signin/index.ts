@@ -22,15 +22,17 @@ router.post(
     const { email, password } = req.body;
     const { users } = await usersRepo.getUsers();
 
-    const existingUser = users.find((u) => u.email === email);
+    const existingUser = users.find((user) => user.email === email);
+
     if (!existingUser) {
       throw new BadRequestError("Invalid credentials");
     }
 
     const passwordsMatch = await Password.compare(
       existingUser.password,
-      password
+      password,
     );
+
     if (!passwordsMatch) {
       throw new BadRequestError("Invalid Credentials");
     }
@@ -41,7 +43,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY!,
     );
 
     // Store it on session object
@@ -49,8 +51,8 @@ router.post(
       jwt: userJwt,
     };
 
-    res.status(200).send(existingUser);
-  }
+    res.status(200).send({ email: existingUser.email, id: existingUser.id });
+  },
 );
 
 export { router as signinRouter };
