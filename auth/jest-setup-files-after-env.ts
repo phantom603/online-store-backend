@@ -1,10 +1,19 @@
 import jwt from "jsonwebtoken";
+import * as path from "path";
+import { db } from "common";
 
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
+
+  await db.connect({
+    dbPath: path.join(__dirname, "./src/db.json"),
+  });
 });
 
-// NOTE: This is a global function that will be called before each test suite
+afterAll(() => {
+  db.disconnect();
+});
+
 global.signin = () => {
   // Build a JWT payload.  { id, email }
   const payload = {

@@ -1,5 +1,5 @@
 import * as path from "path";
-import { app } from "./app";
+import app from "./app";
 import { db } from "common";
 
 const start = async () => {
