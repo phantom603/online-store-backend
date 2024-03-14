@@ -1,16 +1,8 @@
 export default class Stripe {
-  constructor(key: string) {
-    console.log("stripe mock constructor called with key: ", key);
-  }
-
   get checkout() {
-    console.log("checkout mock called");
-
     return {
       sessions: {
         list: async () => {
-          console.log("retrieve mock called");
-
           return {
             data: [
               {
