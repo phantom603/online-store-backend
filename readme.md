@@ -9,10 +9,10 @@
 
 ## Install
 
-1. Install dependencies in each microservice
+1. Install dependencies in root project and each microservice:
 
 ```bash
-./install.sh
+npm install
 ```
 
 2. Add values to .env files in each microservice
@@ -30,7 +30,7 @@ npm start
 1. To build all microservices:
 
 ```bash
-./build.sh
+npm run build
 ```
 
 2. To run all microsercvices via PM2 in **production** mode:

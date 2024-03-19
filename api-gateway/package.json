@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf ./build && tsc && cp ./package.json ./package-lock.json ./build && cd build && npm pkg delete scripts && npm pkg set scripts.start='node -r dotenv/config index.js'",
+    "build": "./build.mjs",
     "start": "ts-node-dev -r dotenv/config src/index.ts"
   },
   "keywords": [],

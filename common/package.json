@@ -8,15 +8,13 @@
     "build/**/*"
   ],
   "scripts": {
-    "clean": "del ./build/*",
-    "build": "npm run clean && tsc",
-    "pub": "git add . && git commit -m \"Common Package: Updates\" && npm version patch && npm run build"
+    "build": "rimraf ./build && tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "del-cli": "^5.1.0",
+    "rimraf": "^5.0.5",
     "typescript": "^5.3.3"
   },
   "peerDependencies": {
