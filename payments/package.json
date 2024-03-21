@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "./build.mjs",
+    "build": "zx ./build.mjs",
     "start": "ts-node-dev -r dotenv/config src/index.ts",
     "test": "jest",
-    "postinstall": "cp -n .example.env .env || true"
+    "postinstall": "zx ./post-install.mjs"
   },
   "keywords": [],
   "author": "",

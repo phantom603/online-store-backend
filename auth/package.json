@@ -8,7 +8,7 @@
     "seedUsers": "ts-node src/seed-users.ts",
     "start": "ts-node-dev -r dotenv/config  src/index.ts",
     "test": "jest",
-    "postinstall": "cp -n .example.env .env || true && npm run seedUsers"
+    "postinstall": "zx ./post-install.mjs"
   },
   "keywords": [],
   "author": "",
