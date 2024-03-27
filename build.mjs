@@ -2,7 +2,17 @@
 
 await $`rm -rf build`;
 await $`mkdir -p build`;
-await $`find . -maxdepth 2 -mindepth 2 -name package.json -execdir npm run build \\;`;
+// await $`find . -maxdepth 2 -mindepth 2 -name package.json -execdir npm run build \\;`;
+
+// NOTE: build common module first
+await $`cd ${__dirname}/common && npm run build`;
+
+await Promise.all([
+  $`cd ${__dirname}/auth && npm run build`,
+  $`cd ${__dirname}/api-gateway && npm run build`,
+  $`cd ${__dirname}/payments && npm run build`,
+  $`cd ${__dirname}/shop && npm run build`,
+]);
 
 await Promise.all([
   $`cp -v ${__dirname}/ecosystem.config.js ${__dirname}/build`,
