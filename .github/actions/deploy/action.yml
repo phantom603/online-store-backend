@@ -39,6 +39,10 @@ runs:
       run: npm ci
       shell: bash
 
+    - name: Run tests
+      run: npm test
+      shell: bash
+
     - name: Build
       run: npm run build
       shell: bash
