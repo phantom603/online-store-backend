@@ -3,7 +3,13 @@ inputs:
   target:
     description: "Name of the folder under /var/www/ to deploy into"
     required: true
-  env:
+  env-auth:
+    description: "Environment code"
+    required: true
+  env-shop:
+    description: "Environment code"
+    required: true
+  env-payments:
     description: "Environment code"
     required: true
   ssh-user:
@@ -23,7 +29,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 21.x
+        node-version: 20.x
         cache: "npm"
 
     - name: Install dependencies

@@ -11,9 +11,9 @@ jobs:
       - uses: ./.github/actions/deploy
         with:
           target: shop.bootcamp.place/server
-          env-auth: ${{ secrets.AUTH_ENV_FILE }}
-          env-shop: ${{ secrets.SHOP_ENV_FILE }}
-          env-payments: ${{ secrets.PAYMENTS_ENV_FILE }}
+          env-auth: ${{ secrets.ENV_AUTH }}
+          env-shop: ${{ secrets.ENV_SHOP }}
+          env-payments: ${{ secrets.ENV_PAYMENTS }}
           ssh-user: ${{ secrets.SSH_USER }}
           ssh-host: ${{ secrets.SSH_HOST }}
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
