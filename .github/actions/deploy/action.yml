@@ -36,11 +36,7 @@ runs:
         ssh-private-key: ${{ inputs.ssh-private-key }}
 
     - name: Install dependencies
-      run: npm install
-      shell: bash
-
-    - name: Run tests
-      run: npm test
+      run: npm ci
       shell: bash
 
     - name: Build
