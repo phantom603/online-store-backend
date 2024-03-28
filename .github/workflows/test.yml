@@ -5,11 +5,11 @@ on:
     branches: ["main"]
 
 jobs:
-  deploy:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/test
         with:
           env-auth: ${{ secrets.ENV_AUTH }}

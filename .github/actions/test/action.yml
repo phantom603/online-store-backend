@@ -23,15 +23,15 @@ runs:
       shell: bash
 
     - name: auth service make .env file
-      run: echo '${{ inputs.env-auth }}' > build/auth/.env
+      run: echo '${{ inputs.env-auth }}' > auth/.env
       shell: bash
 
     - name: payments service make .env file
-      run: echo '${{ inputs.env-payment }}' > build/payments/.env
+      run: echo '${{ inputs.env-payment }}' > payments/.env
       shell: bash
 
     - name: shop service make .env file
-      run: echo '${{ inputs.env-shop }}' > build/shop/.env
+      run: echo '${{ inputs.env-shop }}' > shop/.env
       shell: bash
 
     - name: Run tests
