@@ -38,6 +38,10 @@ runs:
       run: echo '${{ inputs.env-shop }}' > shop/.env
       shell: bash
 
-    - name: Run tests coverage
-      run: npm run test:coverage
-      shell: bash
+    - name: Code Climate Coverage Action
+      uses: paambaati/codeclimate-action@v5.0.0
+      env:
+        CC_TEST_REPORTER_ID: 00a35cbe771cc39cdfc3897944053fb7b05ac7e06e61de389360253848b60c56
+      with:
+        coverageCommand: npm run test:coverage
+        debug: true
