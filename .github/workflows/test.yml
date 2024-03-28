@@ -1,0 +1,17 @@
+name: Run test
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/test
+        with:
+          env-auth: ${{ secrets.ENV_AUTH }}
+          env-shop: ${{ secrets.ENV_SHOP }}
+          env-payments: ${{ secrets.ENV_PAYMENTS }}
