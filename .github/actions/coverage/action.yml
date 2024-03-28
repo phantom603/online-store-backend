@@ -1,0 +1,43 @@
+name: "Tests coverage"
+inputs:
+  env-auth:
+    description: "Environment code"
+    required: true
+  env-shop:
+    description: "Environment code"
+    required: true
+  env-payments:
+    description: "Environment code"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: "npm"
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Build common package
+      run: cd common && npm run build
+      shell: bash
+
+    - name: auth service make .env file
+      run: echo '${{ inputs.env-auth }}' > auth/.env
+      shell: bash
+
+    - name: payments service make .env file
+      run: echo '${{ inputs.env-payment }}' > payments/.env
+      shell: bash
+
+    - name: shop service make .env file
+      run: echo '${{ inputs.env-shop }}' > shop/.env
+      shell: bash
+
+    - name: Run tests coverage
+      run: npm run test:coverage
+      shell: bash
