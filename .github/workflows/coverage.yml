@@ -1,0 +1,15 @@
+name: Run tests coverage
+
+on: workflow_dispatch
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/coverage
+        with:
+          env-auth: ${{ secrets.ENV_AUTH }}
+          env-shop: ${{ secrets.ENV_SHOP }}
+          env-payments: ${{ secrets.ENV_PAYMENTS }}

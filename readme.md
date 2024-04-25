@@ -1,5 +1,7 @@
 # Backend for online-store
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/edf6c50239f33450ba88/test_coverage)](https://codeclimate.com/github/dosandk/online-store-backend/test_coverage)
+
 ## Microservices list
 
 - shop

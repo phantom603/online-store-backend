@@ -1,3 +1,10 @@
 #!/usr/bin/env zx
 
-await $`find ${__dirname} -mindepth 2 -maxdepth 2 -name package.json -execdir npm i \\;`;
+await $`cd ${__dirname}/common && npm install`;
+
+await Promise.all([
+  $`cd ${__dirname}/auth && npm install`,
+  $`cd ${__dirname}/api-gateway && npm install`,
+  $`cd ${__dirname}/payments && npm install`,
+  $`cd ${__dirname}/shop && npm install`,
+]);

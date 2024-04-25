@@ -1,0 +1,19 @@
+name: Deploy to production
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/deploy
+        with:
+          target: shop.bootcamp.place/server
+          env-auth: ${{ secrets.ENV_AUTH }}
+          env-shop: ${{ secrets.ENV_SHOP }}
+          env-payments: ${{ secrets.ENV_PAYMENTS }}
+          ssh-user: ${{ secrets.SSH_USER }}
+          ssh-host: ${{ secrets.SSH_HOST }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}

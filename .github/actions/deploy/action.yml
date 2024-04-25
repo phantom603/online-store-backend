@@ -1,0 +1,64 @@
+name: "Deploy"
+inputs:
+  target:
+    description: "Name of the folder under /var/www/ to deploy into"
+    required: true
+  env-auth:
+    description: "Environment code"
+    required: true
+  env-shop:
+    description: "Environment code"
+    required: true
+  env-payments:
+    description: "Environment code"
+    required: true
+  ssh-user:
+    description: "Username for SSH connection"
+    required: true
+  ssh-host:
+    description: "Host address for SSH connection"
+    required: true
+  ssh-private-key:
+    description: "Private key for SSH connection"
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20.x
+        cache: "npm"
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ inputs.ssh-private-key }}
+
+    - name: Install dependencies
+      run: npm ci
+      shell: bash
+
+    - name: Build
+      run: npm run build
+      shell: bash
+
+    - name: auth service make .env file
+      run: echo '${{ inputs.env-auth }}' > build/auth/.env
+      shell: bash
+
+    - name: payments service make .env file
+      run: echo '${{ inputs.env-payment }}' > build/payments/.env
+      shell: bash
+
+    - name: shop service make .env file
+      run: echo '${{ inputs.env-shop }}' > build/shop/.env
+      shell: bash
+
+    - name: Add known hosts
+      run: ssh-keyscan ${{ inputs.ssh-host }} >> ~/.ssh/known_hosts
+      shell: bash
+
+    - name: Deploy
+      run: rsync -vzr --no-perms --no-owner --no-group --delete build/ ${{ inputs.ssh-user }}@${{ inputs.ssh-host }}:/var/www/${{ inputs.target }}
+      shell: bash
