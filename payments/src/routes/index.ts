@@ -72,7 +72,7 @@ router.post(
     });
 
     res.send({ clientSecret: session.client_secret });
-  },
+  }
 );
 
 export { router as createPaymentRouter };

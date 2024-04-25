@@ -2,7 +2,7 @@
 
 // first step: build typescript
 await $`rimraf ${__dirname}/build`;
-await $`tsc`;
+await $`tsc -p prod.tsconfig.json`;
 
 // second step: copy files
 await Promise.all([

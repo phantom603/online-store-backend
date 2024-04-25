@@ -2,18 +2,16 @@ import jwt from "jsonwebtoken";
 
 beforeAll(async () => {
   process.env.JWT_KEY = "asdfasdf";
+  global.currentUser = {
+    id: 1,
+    email: global.userEmail,
+  };
 });
 
 // NOTE: This is a global function that will be called before each test suite
 global.signin = () => {
-  // Build a JWT payload.  { id, email }
-  const payload = {
-    id: 1,
-    email: "foo@bar.com",
-  };
-
   // Create the JWT!
-  const token = jwt.sign(payload, process.env.JWT_KEY!);
+  const token = jwt.sign(global.currentUser, process.env.JWT_KEY!);
 
   // Build session Object. { jwt: MY_JWT }
   const session = { jwt: token };

@@ -1,13 +1,10 @@
 export const requireAuth = async (req: any, res: any, next: any) => {
-  req.currentUser = {
-    id: "1",
-    email: "foo@biz.common",
-  };
+  req.currentUser = global.currentUser;
 
   next();
 };
 
-export const validateRequest = async (req: any, res: any, next: any) => {
+export const validateRequest = (req: any, res: any, next: any) => {
   next();
 };
 
