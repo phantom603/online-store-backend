@@ -11,10 +11,7 @@ describe("payments", () => {
   });
 
   it("should return orders list", async () => {
-    const response = await request(app)
-      .get(`/api/payments/orders`)
-      .set("Cookie", global.signin())
-      .send();
+    const response = await request(app).get(`/api/payments/orders`).send();
 
     expect(mockSessionsList).toHaveBeenCalledWith({
       customer_details: { email: global.currentUser.email },

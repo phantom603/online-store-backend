@@ -26,7 +26,6 @@ describe("payments", () => {
   it("should fail to create a payment when no products passed", async () => {
     const response = await request(app)
       .post(`/api/payments`)
-      .set("Cookie", global.signin())
       .send({})
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
@@ -51,7 +50,6 @@ describe("payments", () => {
 
     const response = await request(app)
       .post(`/api/payments`)
-      .set("Cookie", global.signin())
       .send({ products })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
@@ -111,7 +109,6 @@ describe("payments", () => {
 
     const response = await request(app)
       .post(`/api/payments`)
-      .set("Cookie", global.signin())
       .send({ products })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json");
