@@ -12,4 +12,5 @@ jobs:
         with:
           env-auth: ${{ secrets.ENV_AUTH }}
           env-shop: ${{ secrets.ENV_SHOP }}
+          env-dashboard: ${{ secrets.ENV_DASHBOARD }}
           env-payments: ${{ secrets.ENV_PAYMENTS }}

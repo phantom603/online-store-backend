@@ -12,6 +12,7 @@ await Promise.all([
   $`cd ${__dirname}/api-gateway && npm run build`,
   $`cd ${__dirname}/payments && npm run build`,
   $`cd ${__dirname}/shop && npm run build`,
+  $`cd ${__dirname}/dashboard && npm run build`,
 ]);
 
 await Promise.all([
@@ -26,7 +27,7 @@ cd(`${__dirname}`);
 // NOTE: copoy common module as is
 await $`cp -vr ${__dirname}/common ${__dirname}/build/common`;
 
-const modules = ["auth", "shop", "payments", "api-gateway"];
+const modules = ["auth", "shop", "payments", "api-gateway", "dashboard"];
 
 for (const module of modules) {
   await $`cp -vr ${__dirname}/${module}/build ${__dirname}/build/${module}`;

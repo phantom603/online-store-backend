@@ -21,6 +21,12 @@ module.exports = {
       cwd: path.resolve(__dirname, "shop/"),
     },
     {
+      name: "dashboard",
+      script: "npm",
+      args: "start",
+      cwd: path.resolve(__dirname, "dashboard/"),
+    },
+    {
       name: "api-gateway",
       script: "npm",
       args: "start",

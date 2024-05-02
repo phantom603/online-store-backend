@@ -7,6 +7,7 @@
 - shop
 - auth
 - payments
+- dashboard
 - api-gateway
 
 ## Install

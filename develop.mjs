@@ -25,6 +25,11 @@ const run = (command = "") => {
       },
       {
         command,
+        name: "dashboard server",
+        cwd: path.resolve(__dirname, "dashboard"),
+      },
+      {
+        command,
         name: "api-gateway server",
         cwd: path.resolve(__dirname, "api-gateway"),
       },
