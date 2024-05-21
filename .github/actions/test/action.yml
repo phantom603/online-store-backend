@@ -6,6 +6,9 @@ inputs:
   env-shop:
     description: "Environment code"
     required: true
+  env-dashboard:
+    description: "Environment code"
+    required: true
   env-payments:
     description: "Environment code"
     required: true
@@ -36,6 +39,10 @@ runs:
 
     - name: shop service make .env file
       run: echo '${{ inputs.env-shop }}' > shop/.env
+      shell: bash
+    
+    - name: dashboard service make .env file
+      run: echo '${{ inputs.env-dashboard }}' > dashboard/.env
       shell: bash
 
     - name: Run tests

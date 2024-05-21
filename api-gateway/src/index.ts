@@ -17,6 +17,7 @@ const services = [
   { name: "shop", port: 3001 },
   { name: "auth", port: 3002 },
   { name: "payments", port: 3003 },
+  { name: "dashboard", port: 3004 },
 ];
 
 for (const service of services) {

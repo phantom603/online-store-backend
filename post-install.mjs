@@ -7,4 +7,5 @@ await Promise.all([
   $`cd ${__dirname}/api-gateway && npm install`,
   $`cd ${__dirname}/payments && npm install`,
   $`cd ${__dirname}/shop && npm install`,
+  $`cd ${__dirname}/dashboard && npm install`,
 ]);
